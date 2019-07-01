@@ -1,4 +1,4 @@
-import { step, TestSettings, Until, By, Device, Key } from '@flood/element'
+import { step, TestSettings, Until, By, Device } from '@flood/element'
 import * as assert from 'assert'
 
 export const settings: TestSettings = {
@@ -31,36 +31,31 @@ export default () => {
 
   })
 
-  step('Test: 02 - JQueryUI', async browser => {
+  step('Test: 02 - Frames', async browser => {
   
-    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(24) > a'))
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(19) > a'))
     await linkHref.click()
-    let pageTextVerify = By.visibleText('JQueryUI')
+    let pageTextVerify = By.visibleText('Frames')
     await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
-  step('Test: 03 - Menu', async browser => {
+  step('Test: 03 - iFrames', async browser => {
 
-    let Menu = await browser.findElement(By.css('#ui-id-2'))
-    await Menu.focus()
-    await Menu.click()
-
-  })
-
-  step('Test: 04 - SubMenu', async browser => {
-
-    let SubMenu = await browser.findElement(By.css('#ui-id-4'))
-    await SubMenu.focus()
-    await SubMenu.click()
+    let iFrames = By.css('#content > div > ul > li:nth-child(2) > a')
+    await browser.wait(Until.elementIsVisible(iFrames))
+    let iFramesLink = await browser.findElement(iFrames)
+    await iFramesLink.click()
 
   })
 
-  step('Test: 05 - PDF', async browser => {
+  step('Test: 04 - Frames', async browser => {
 
-    let PDF = await browser.findElement(By.css('#ui-id-6'))
-    await PDF.focus()
-    await PDF.click()
+      let iframe = await browser.findElement(By.tagName('iframe'))
+      await browser.switchTo().frame(iframe)
+      let Box = await browser.findElement(By.tagName('body'))
+      await Box.click()
+      await Box.sendKeys("   !Flood rules!")
 
   })
 

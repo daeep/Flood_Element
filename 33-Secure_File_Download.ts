@@ -31,23 +31,25 @@ export default () => {
 
   })
 
-  step('Test: 02 - Basic Auth', async browser => {
+  step('Test: 02 - Secure File Download', async browser => {
   
-      let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(3) > a'))
-      await linkHref.click()
-      await browser.wait(Until.elementIsVisible(By.css('#content > div > h3')))
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(33) > a'))
+    await linkHref.click()
 
   })
 
-  step('Test: 03 - Images', async browser => {
+  step('Test: 03 - Enter credentials', async browser => {
 
-      let ArrayImg = await browser.findElements(By.tagName('img'))
-      assert(ArrayImg.length > 0, 'expected to find some images')
-      console.log('Number of images found: ' + ArrayImg.length)
-      for (let Image of ArrayImg) {
-          const Src = await Image.getAttribute("src")
-          console.log('Image Source: ' + Src)
-      }
+    await browser.visit('http://admin:admin@18.208.170.2:7080/download_secure')
+    let pageTextVerify = By.visibleText('Secure File Downloader')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
+
+  })
+
+  step('Test: 04 - Secure File Downloader', async browser => {
+
+    let File = await browser.findElement(By.css('#content > div > a'))
+    await File.click()
 
   })
 

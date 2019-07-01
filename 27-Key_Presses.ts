@@ -31,36 +31,27 @@ export default () => {
 
   })
 
-  step('Test: 02 - JQueryUI', async browser => {
+  step('Test: 02 - Key Presses', async browser => {
   
-    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(24) > a'))
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(27) > a'))
     await linkHref.click()
-    let pageTextVerify = By.visibleText('JQueryUI')
+    let pageTextVerify = By.visibleText('Key Presses')
     await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
-  step('Test: 03 - Menu', async browser => {
+  step('Test: 03 - Keys', async browser => {
 
-    let Menu = await browser.findElement(By.css('#ui-id-2'))
-    await Menu.focus()
-    await Menu.click()
-
-  })
-
-  step('Test: 04 - SubMenu', async browser => {
-
-    let SubMenu = await browser.findElement(By.css('#ui-id-4'))
-    await SubMenu.focus()
-    await SubMenu.click()
-
-  })
-
-  step('Test: 05 - PDF', async browser => {
-
-    let PDF = await browser.findElement(By.css('#ui-id-6'))
-    await PDF.focus()
-    await PDF.click()
+    await browser.press(Key.SPACE)
+    await browser.press(Key.PAGE_DOWN)
+    await browser.sendKeys(Key.PAGE_UP)
+    await browser.sendKeys(Key.ENTER)
+    await browser.press(Key.TAB)
+    await browser.press(Key.UP)
+    await browser.sendKeys(Key.DOWN)
+    await browser.sendKeys(Key.LEFT)
+    await browser.sendKeys(Key.RIGHT)
+    await browser.sendKeys(Key.ESCAPE)
 
   })
 
