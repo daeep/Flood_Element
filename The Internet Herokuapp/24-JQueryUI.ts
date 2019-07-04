@@ -31,23 +31,36 @@ export default () => {
 
   })
 
-  step('Test: 02 - Basic Auth', async browser => {
-  
-      let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(3) > a'))
-      await linkHref.click()
-      await browser.wait(Until.elementIsVisible(By.css('#content > div > h3')))
+  step('Test: 02 - JQueryUI', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(24) > a'))
+    await linkHref.click()
+    let pageTextVerify = By.visibleText('JQueryUI')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
-  step('Test: 03 - Images', async browser => {
+  step('Test: 03 - Menu', async browser => {
 
-      let ArrayImg = await browser.findElements(By.tagName('img'))
-      assert(ArrayImg.length > 0, 'expected to find some images')
-      console.log('Number of images found: ' + ArrayImg.length)
-      for (let Image of ArrayImg) {
-          const Src = await Image.getAttribute("src")
-          console.log('Image Source: ' + Src)
-      }
+    let Menu = await browser.findElement(By.css('#ui-id-2'))
+    await Menu.focus()
+    await Menu.click()
+
+  })
+
+  step('Test: 04 - SubMenu', async browser => {
+
+    let SubMenu = await browser.findElement(By.css('#ui-id-4'))
+    await SubMenu.focus()
+    await SubMenu.click()
+
+  })
+
+  step('Test: 05 - PDF', async browser => {
+
+    let PDF = await browser.findElement(By.css('#ui-id-6'))
+    await PDF.focus()
+    await PDF.click()
 
   })
 

@@ -31,25 +31,23 @@ export default () => {
 
   })
 
-  step('Test: 02 - Checkboxes', async browser => {
-  
-      let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(5) > a'))
-      await linkHref.click()
-      await browser.wait(Until.elementIsVisible(By.css('#content > div')))
+  step('Test: 02 - Basic Auth', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(3) > a'))
+    await linkHref.click()
+    await browser.wait(Until.elementIsVisible(By.css('#content > div > h3')))
 
   })
 
-  step('Test: 03 - Uncheck box', async browser => {
-  
-      let Checkbox = await browser.findElement(By.css('#checkboxes > input[type=checkbox]:nth-child(1)'))
-      await Checkbox.click()
-      
-  })
+  step('Test: 03 - Images', async browser => {
 
-  step('Test: 04 - Check box', async browser => {
-  
-      let Checkbox = await browser.findElement(By.css('#checkboxes > input[type=checkbox]:nth-child(1)'))
-      await Checkbox.click()
+    let ArrayImg = await browser.findElements(By.tagName('img'))
+    assert(ArrayImg.length > 0, 'expected to find some images')
+    console.log('Number of images found: ' + ArrayImg.length)
+    for (let Image of ArrayImg) {
+        const Src = await Image.getAttribute("src")
+        console.log('Image Source: ' + Src)
+    }
 
   })
 

@@ -32,7 +32,7 @@ export default () => {
   })
 
   step('Test: 02 - Form Authentication', async browser => {
-  
+
     let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(18) > a'))
     await linkHref.click()
     let pageTextVerify = By.visibleText('Login Page')

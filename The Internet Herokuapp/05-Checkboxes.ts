@@ -31,23 +31,25 @@ export default () => {
 
   })
 
-  step('Test: 02 - Disappearing Elements', async browser => {
-  
-      let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(7) > a'))
-      await linkHref.click()
-      await browser.wait(Until.elementIsVisible(By.css('#content > div')))
+  step('Test: 02 - Checkboxes', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(5) > a'))
+    await linkHref.click()
+    await browser.wait(Until.elementIsVisible(By.css('#content > div')))
 
   })
 
-  step('Test: 03 - Gallery is Displayed', async browser => {
-  
-      let Gallery = await browser.maybeFindElement(By.css('#content > div > ul > li:nth-child(5) > a'))
-      if ( Gallery != null ){
-          let isDisplayed = await Gallery.isDisplayed()
-          if( isDisplayed ){
-              await Gallery.click()
-          }
-      }
+  step('Test: 03 - Uncheck box', async browser => {
+
+    let Checkbox = await browser.findElement(By.css('#checkboxes > input[type=checkbox]:nth-child(1)'))
+    await Checkbox.click()
+
+  })
+
+  step('Test: 04 - Check box', async browser => {
+
+    let Checkbox = await browser.findElement(By.css('#checkboxes > input[type=checkbox]:nth-child(1)'))
+    await Checkbox.click()
 
   })
 

@@ -32,37 +32,37 @@ export default () => {
   })
 
   step('Test: 02 - Challenging DOM', async browser => {
-  
-      let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(4) > a'))
-      await linkHref.click()
-      await browser.wait(Until.elementIsVisible(By.css('#content > div')))
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(4) > a'))
+    await linkHref.click()
+    await browser.wait(Until.elementIsVisible(By.css('#content > div')))
 
   })
 
   step('Test: 03 - Challenging DOM - Click Button', async browser => {
-  
-      let Button = await browser.findElement(By.xpath("//*[contains(@class, 'button')]"))
-      await Button.click()
-      let pageTextVerify = By.visibleText('Challenging DOM')
-      await browser.wait(Until.elementIsVisible(pageTextVerify))
+
+    let Button = await browser.findElement(By.xpath("//*[contains(@class, 'button')]"))
+    await Button.click()
+    let pageTextVerify = By.visibleText('Challenging DOM')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
   step('Test: 04 - Challenging DOM - Click Button Alert', async browser => {
-  
-      let ButtonAlert = await browser.findElement(By.xpath("//*[contains(@class, 'button alert')]"))
-      await ButtonAlert.click()
-      let pageTextVerify = By.visibleText('Challenging DOM')
-      await browser.wait(Until.elementIsVisible(pageTextVerify))
+
+    let ButtonAlert = await browser.findElement(By.xpath("//*[contains(@class, 'button alert')]"))
+    await ButtonAlert.click()
+    let pageTextVerify = By.visibleText('Challenging DOM')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
   step('Test: 05 - Challenging DOM - Click Button Success', async browser => {
 
-      let ButtonSuccess = await browser.findElement(By.xpath("//*[contains(@class, 'button success')]"))
-      await ButtonSuccess.click()
-      let pageTextVerify = By.visibleText('Challenging DOM')
-      await browser.wait(Until.elementIsVisible(pageTextVerify))
+    let ButtonSuccess = await browser.findElement(By.xpath("//*[contains(@class, 'button success')]"))
+    await ButtonSuccess.click()
+    let pageTextVerify = By.visibleText('Challenging DOM')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 

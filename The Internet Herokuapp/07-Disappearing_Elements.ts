@@ -31,21 +31,23 @@ export default () => {
 
   })
 
-  step('Test: 02 - Redirect Link', async browser => {
-  
-    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(32) > a'))
+  step('Test: 02 - Disappearing Elements', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(7) > a'))
     await linkHref.click()
-    let pageTextVerify = By.visibleText('Redirection')
-    await browser.wait(Until.elementIsVisible(pageTextVerify))
+    await browser.wait(Until.elementIsVisible(By.css('#content > div')))
 
   })
 
-  step('Test: 03 - Redirect', async browser => {
-  
-    let Redirect = await browser.findElement(By.css('#redirect'))
-    await Redirect.click()
-    let pageTextVerify = By.visibleText('Status')
-    await browser.wait(Until.elementIsVisible(pageTextVerify))
+  step('Test: 03 - Gallery is Displayed', async browser => {
+
+    let Gallery = await browser.maybeFindElement(By.css('#content > div > ul > li:nth-child(5) > a'))
+    if ( Gallery != null ){
+      let isDisplayed = await Gallery.isDisplayed()
+      if( isDisplayed ){
+        await Gallery.click()
+      }
+    }
 
   })
 

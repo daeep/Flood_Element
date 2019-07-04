@@ -32,7 +32,7 @@ export default () => {
   })
 
   step('Test: 02 - Frames', async browser => {
-  
+
     let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(19) > a'))
     await linkHref.click()
     let pageTextVerify = By.visibleText('Frames')
@@ -40,22 +40,27 @@ export default () => {
 
   })
 
-  step('Test: 03 - iFrames', async browser => {
+  step('Test: 03 - Nested Frames', async browser => {
 
-    let iFrames = By.css('#content > div > ul > li:nth-child(2) > a')
-    await browser.wait(Until.elementIsVisible(iFrames))
-    let iFramesLink = await browser.findElement(iFrames)
-    await iFramesLink.click()
+    let Nested = By.css('#content > div > ul > li:nth-child(1) > a')
+    await browser.wait(Until.elementIsVisible(Nested))
+    let NestedLink = await browser.findElement(Nested)
+    await NestedLink.click()
 
   })
 
   step('Test: 04 - Frames', async browser => {
 
-      let iframe = await browser.findElement(By.tagName('iframe'))
-      await browser.switchTo().frame(iframe)
-      let Box = await browser.findElement(By.tagName('body'))
-      await Box.click()
-      await Box.sendKeys("   !Flood rules!")
+    let ArrayFrames = await browser.findElements(By.tagName('frame'))
+    assert(ArrayFrames.length > 0, 'expected to find some Frames')
+    await browser.switchTo().frame("frame-top")
+    await browser.switchTo().defaultContent()
+    await browser.switchTo().frame("frame-left")
+    await browser.switchTo().defaultContent()
+    await browser.switchTo().frame("frame-middle")
+    await browser.switchTo().defaultContent()
+    await browser.switchTo().frame("frame-right")
+    await browser.switchTo().defaultContent()
 
   })
 

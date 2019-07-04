@@ -1,4 +1,4 @@
-import { step, TestSettings, Until, By, Device, Key } from '@flood/element'
+import { step, TestSettings, Until, By, Device } from '@flood/element'
 import * as assert from 'assert'
 
 export const settings: TestSettings = {
@@ -31,21 +31,19 @@ export default () => {
 
   })
 
-  step('Test: 02 - Large - Deep DOM', async browser => {
-  
-    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(28) > a'))
+  step('Test: 02 - Dropdown', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(9) > a'))
     await linkHref.click()
-    let pageTextVerify = By.visibleText('Large & Deep DOM')
-    await browser.wait(Until.elementIsVisible(pageTextVerify))
+    await browser.wait(Until.elementIsVisible(By.css('#content > div')))
 
   })
 
-  step('Test: 03 - Elements', async browser => {
+  step('Test: 03 - Dropdown selection', async browser => {
 
-    let Table = await browser.findElement(By.xpath("//tr[@class='row-50']/td[@class='column-50']"))
-    const Text = await Table.text()
-    console.log('Last column and row: ' + Text)
-    assert(Text === '50.50', 'Text value is correct')
+    let Dropdown = By.css('#dropdown')
+    await browser.wait(Until.elementIsVisible(Dropdown))
+    await browser.selectByIndex(Dropdown,'1')
 
   })
 

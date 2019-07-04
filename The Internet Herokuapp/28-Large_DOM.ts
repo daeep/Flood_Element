@@ -31,33 +31,21 @@ export default () => {
 
   })
 
-  step('Test: 02 - Notification Messages', async browser => {
-  
-    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(31) > a'))
+  step('Test: 02 - Large - Deep DOM', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(28) > a'))
     await linkHref.click()
-    let pageTextVerify = By.visibleText('Notification')
+    let pageTextVerify = By.visibleText('Large & Deep DOM')
     await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
-  step('Test: 03 - Load new Message', async browser => {
-  
-    let Flash = await browser.findElement(By.id('flash'))
-    const Text = await Flash.text()
-    console.log('The Flash message says: ' + Text )
+  step('Test: 03 - Elements', async browser => {
 
-    let NewMesg = await browser.findElement(By.css('#content > div > p > a'))
-    await NewMesg.click()
-    let pageTextVerify = By.visibleText('successful')
-    await browser.wait(Until.elementIsVisible(pageTextVerify))
-
-  })
-
-  step('Test: 04 - New Message', async browser => {
-  
-    let Flash = await browser.findElement(By.id('flash'))
-    const Text = await Flash.text()
-    console.log('The Flash message says: ' + Text )
+    let Table = await browser.findElement(By.xpath("//tr[@class='row-50']/td[@class='column-50']"))
+    const Text = await Table.text()
+    console.log('Last column and row: ' + Text)
+    assert(Text === '50.50', 'Text value is correct')
 
   })
 

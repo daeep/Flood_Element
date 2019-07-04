@@ -31,26 +31,22 @@ export default () => {
 
   })
 
-  step('Test: 02 - Nested Frames', async browser => {
-  
-    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(30) > a'))
+  step('Test: 02 - Redirect Link', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(32) > a'))
     await linkHref.click()
+    let pageTextVerify = By.visibleText('Redirection')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
 
   })
 
-  step('Test: 03 - Frames', async browser => {
+  step('Test: 03 - Redirect', async browser => {
 
-      let ArrayFrames = await browser.findElements(By.tagName('frame'))
-      assert(ArrayFrames.length > 0, 'expected to find some Frames')
-      await browser.switchTo().frame("frame-top")
-      await browser.switchTo().defaultContent()
-      await browser.switchTo().frame("frame-left")
-      await browser.switchTo().defaultContent()
-      await browser.switchTo().frame("frame-middle")
-      await browser.switchTo().defaultContent()
-      await browser.switchTo().frame("frame-right")
-      await browser.switchTo().defaultContent()
-      
+    let Redirect = await browser.findElement(By.css('#redirect'))
+    await Redirect.click()
+    let pageTextVerify = By.visibleText('Status')
+    await browser.wait(Until.elementIsVisible(pageTextVerify))
+
   })
 
 }

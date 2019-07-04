@@ -2,16 +2,16 @@ import { step, TestSettings, Until, By, Device } from '@flood/element'
 import * as assert from 'assert'
 
 export const settings: TestSettings = {
-    clearCache: false,
-    disableCache: false,
-    clearCookies: false,
-    loopCount: 1,
-    duration: -1,
-    actionDelay: 1.5,
-    stepDelay: 3,
-    waitTimeout: 60,
-    screenshotOnFailure: true,
-    DOMSnapshotOnFailure: true
+  clearCache: false,
+  disableCache: false,
+  clearCookies: false,
+  loopCount: 1,
+  duration: -1,
+  actionDelay: 1.5,
+  stepDelay: 3,
+  waitTimeout: 60,
+  screenshotOnFailure: true,
+  DOMSnapshotOnFailure: true
 }
 
 /**
@@ -31,22 +31,27 @@ export default () => {
 
     })
 
-    step('Test: 02 - WYSIWYG Editor', async browser => {
+    step('Test: 02 - Typos', async browser => {
     
-        let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(39) > a'))
+        let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(38) > a'))
         await linkHref.click()
         await browser.wait(Until.elementIsVisible(By.css('#content > div > h3')))
-        let pageTextVerify = By.visibleText('WYSIWYG Editor')
+        let pageTextVerify = By.visibleText('Typos')
         await browser.wait(Until.elementIsVisible(pageTextVerify))
 
     })
 
-  step('Test: 03 - Editor', async browser => {
+    step('Test: 03 - Typo exist?', async browser => {
 
-      let Box = await browser.findElement(By.tagName('body'))
-      await Box.click()
-      await Box.sendKeys("   !Flood rules!")
+        let pageTextVerify = By.visibleText('won,t.')
+        let Text = await browser.maybeFindElement(pageTextVerify)
+        if ( Text != null ){
+            console.log('Text won,t found')
+        }
+        else{
+            console.log("Text won't found")
+        }
 
-  })
+    })
 
 }

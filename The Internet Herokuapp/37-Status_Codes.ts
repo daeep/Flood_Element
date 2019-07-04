@@ -2,16 +2,16 @@ import { step, TestSettings, Until, By, Device } from '@flood/element'
 import * as assert from 'assert'
 
 export const settings: TestSettings = {
-    clearCache: false,
-    disableCache: false,
-    clearCookies: false,
-    loopCount: 1,
-    duration: -1,
-    actionDelay: 1.5,
-    stepDelay: 3,
-    waitTimeout: 60,
-    screenshotOnFailure: true,
-    DOMSnapshotOnFailure: true
+  clearCache: false,
+  disableCache: false,
+  clearCookies: false,
+  loopCount: 1,
+  duration: -1,
+  actionDelay: 1.5,
+  stepDelay: 3,
+  waitTimeout: 60,
+  screenshotOnFailure: true,
+  DOMSnapshotOnFailure: true
 }
 
 /**

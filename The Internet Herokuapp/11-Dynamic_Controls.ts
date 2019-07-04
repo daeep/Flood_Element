@@ -32,7 +32,7 @@ export default () => {
   })
 
   step('Test: 02 - Dynamic Controls', async browser => {
-  
+
     let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(11) > a'))
     await linkHref.click()
     await browser.wait(Until.elementIsVisible(By.css('#checkbox-example > button')))

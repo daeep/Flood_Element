@@ -31,19 +31,25 @@ export default () => {
 
   })
 
-  step('Test: 02 - Dropdown', async browser => {
-  
-      let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(9) > a'))
-      await linkHref.click()
-      await browser.wait(Until.elementIsVisible(By.css('#content > div')))
+  step('Test: 02 - Nested Frames', async browser => {
+
+    let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(30) > a'))
+    await linkHref.click()
 
   })
 
-  step('Test: 03 - Dropdown selection', async browser => {
-  
-      let Dropdown = By.css('#dropdown')
-      await browser.wait(Until.elementIsVisible(Dropdown))
-      await browser.selectByIndex(Dropdown,'1')
+  step('Test: 03 - Frames', async browser => {
+
+    let ArrayFrames = await browser.findElements(By.tagName('frame'))
+    assert(ArrayFrames.length > 0, 'expected to find some Frames')
+    await browser.switchTo().frame("frame-top")
+    await browser.switchTo().defaultContent()
+    await browser.switchTo().frame("frame-left")
+    await browser.switchTo().defaultContent()
+    await browser.switchTo().frame("frame-middle")
+    await browser.switchTo().defaultContent()
+    await browser.switchTo().frame("frame-right")
+    await browser.switchTo().defaultContent()
 
   })
 
