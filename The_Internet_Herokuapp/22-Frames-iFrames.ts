@@ -16,15 +16,17 @@ export const settings: TestSettings = {
 
 /**
  * Author: Antonio Jimenez : antonio@flood.io
- * The Heroku App
- * @version 1.0
+ * The internet - heroku App
+ * @version 1.1
 */
+
+const URL = 'https://the-internet.herokuapp.com'
 
 export default () => {
 
 	step('Test: 01 - Homepage', async browser => {
 
-		await browser.visit('https://the-internet.herokuapp.com/')
+		await browser.visit(URL)
 		await browser.wait(Until.elementIsVisible(By.css('#content > h1')))
 		let pageTextVerify = By.visibleText('Welcome to the-internet')
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
@@ -33,8 +35,7 @@ export default () => {
 
 	step('Test: 02 - Frames', async browser => {
 
-		let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(22) > a'))
-		await linkHref.click()
+		await browser.visit(URL+'/frames')
 		let pageTextVerify = By.visibleText('Frames')
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
 
@@ -42,20 +43,19 @@ export default () => {
 
 	step('Test: 03 - iFrames', async browser => {
 
-		let iFrames = By.css('#content > div > ul > li:nth-child(2) > a')
-		await browser.wait(Until.elementIsVisible(iFrames))
-		let iFramesLink = await browser.findElement(iFrames)
-		await iFramesLink.click()
+		await browser.visit(URL+'/iframe')
+		let pageTextVerify = By.visibleText('iFrame')
+		await browser.wait(Until.elementIsVisible(pageTextVerify))
 
 	})
 
-	step('Test: 04 - Frames', async browser => {
+	step('Test: 04 - Enter Text', async browser => {
 
 		let iframe = await browser.findElement(By.tagName('iframe'))
 		await browser.switchTo().frame(iframe)
 		let Box = await browser.findElement(By.tagName('body'))
 		await Box.click()
-		await Box.sendKeys("   !Flood rules!")
+		await Box.sendKeys("   !Flood Element rules!")
 
 	})
 

@@ -1,4 +1,4 @@
-import { step, TestSettings, Until, By, Device } from '@flood/element'
+import { step, TestSettings, Until, By, Device, Key } from '@flood/element'
 import * as assert from 'assert'
 
 export const settings: TestSettings = {
@@ -16,15 +16,17 @@ export const settings: TestSettings = {
 
 /**
  * Author: Antonio Jimenez : antonio@flood.io
- * The Heroku App
- * @version 1.0
+ * The internet - heroku App
+ * @version 1.1
 */
+
+const URL = 'https://the-internet.herokuapp.com'
 
 export default () => {
 
 	step('Test: 01 - Homepage', async browser => {
 
-		await browser.visit('https://the-internet.herokuapp.com/')
+		await browser.visit(URL)
 		await browser.wait(Until.elementIsVisible(By.css('#content > h1')))
 		let pageTextVerify = By.visibleText('Welcome to the-internet')
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
@@ -33,8 +35,7 @@ export default () => {
 
 	step('Test: 02 - Slow Resources', async browser => {
 
-		let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(39) > a'))
-		await linkHref.click()
+		await browser.visit(URL+'/slow')
 		await browser.wait(Until.elementIsVisible(By.css('#content > div > h3')))
 		let pageTextVerify = By.visibleText('Slow Resources')
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
@@ -43,7 +44,7 @@ export default () => {
 
 	step('Test: 03 - Slow Resources - External', async browser => {
 
-		await browser.visit('http://the-internet.herokuapp.com/slow_external')
+		await browser.visit(URL+'/slow_external')
 
 	})
 

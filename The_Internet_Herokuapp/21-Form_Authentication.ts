@@ -16,15 +16,17 @@ export const settings: TestSettings = {
 
 /**
  * Author: Antonio Jimenez : antonio@flood.io
- * The Heroku App
- * @version 1.0
+ * The internet - heroku App
+ * @version 1.1
 */
+
+const URL = 'https://the-internet.herokuapp.com'
 
 export default () => {
 
 	step('Test: 01 - Homepage', async browser => {
 
-		await browser.visit('https://the-internet.herokuapp.com/')
+		await browser.visit(URL)
 		await browser.wait(Until.elementIsVisible(By.css('#content > h1')))
 		let pageTextVerify = By.visibleText('Welcome to the-internet')
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
@@ -33,8 +35,7 @@ export default () => {
 
 	step('Test: 02 - Form Authentication', async browser => {
 
-		let linkHref = await browser.findElement(By.css('#content > ul > li:nth-child(21) > a'))
-		await linkHref.click()
+		await browser.visit(URL+'/login')
 		let pageTextVerify = By.visibleText('Login Page')
 		await browser.wait(Until.elementIsVisible(pageTextVerify))
 
